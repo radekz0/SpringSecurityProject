@@ -18,7 +18,7 @@
         <%--To avoid token error:--%>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-        <input type="submit" value="Home Page">
+        <input type="submit" value="Return home">
     </form:form>
 </body>
 </html>

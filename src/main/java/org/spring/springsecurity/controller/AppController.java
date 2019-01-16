@@ -20,4 +20,10 @@ public class AppController {
     public String managersPage(){
         return "managers-page";
     }
+
+    @GetMapping("access-denied")
+    public String accessDenied(){
+        return "access-denied";
+    }
+
 }
