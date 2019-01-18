@@ -17,6 +17,10 @@
 <p>
     Role: <security:authentication property="principal.authorities" />
 </p>
+<%--Throws exception:--%>
+<%--<security:authorize access="hasRole('ROLE_MANAGER')">--%>
+    <%--This text is only visible to a manager.--%>
+<%--</security:authorize>--%>
 <p>
     <a href="${pageContext.request.contextPath}/admins">Admins only page</a>
 </p>
