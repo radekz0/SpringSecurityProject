@@ -21,19 +21,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(securityDataSource);
     }
 
+    //Configuring security of web paths in application (login, logout etc.)
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.authorizeRequests()    //Restrict access based on the HttpServletRequest comming in
                 .antMatchers("/managers/**").hasRole("MANAGER") //Only managers can access this url ** means every subdirectory
                 .antMatchers("/admins/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .anyRequest().authenticated()   //For any request comming to the app it must be authenticated (user must be logged in)
                 .and()
-                .formLogin()
-                .loginPage("/showMyLoginPage")
-                .loginProcessingUrl("/authenticateTheUser")
-                .permitAll()
+                .formLogin()    //Customizing the login form
+                .loginPage("/showMyLoginPage")  //Custom form for the logging page
+                .loginProcessingUrl("/authenticateTheUser") //Login form will post the data to this url for processing, this is where spring will go and check user id and password
+                .permitAll()    //Allow for everyone to see the login page
                 .and()
-                .logout()
+                .logout()   //Adding logout support (default url /logout)
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
